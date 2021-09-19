@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Positioned(
               left: 8,
-              right: 8,
+              right: 0,
               bottom: 0,
               top: 16,
               child: SingleChildScrollView(
@@ -31,10 +31,156 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           width: 8,
                         ),
-                        Text('Hello, '),
-                        Text('Quang Tran')
+                        Text(
+                          'Hello, ',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          'Quang Tran',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        )
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 16),
+                      child: Row(
+                        children: [
+                          Text(
+                            '4 New ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            'tasks today',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 240,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width - 100,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+
+                                    color: Colors.orangeAccent[100]),
+                                child: Center(
+                                  child: Text('$index'),
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 16),
+                      child: Row(
+                        children: [
+                          Text(
+                            'To ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            'Do',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.blue[100],
+                            foregroundColor: Colors.black,
+                            child: Text('3'),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 130,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width / 2.5,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                    color: Colors.red[100]),
+                                child: Center(
+                                  child: Text('$index'),
+                                ),
+                              ),
+                            );
+                          }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 24, bottom: 16),
+                      child: Row(
+                        children: [
+                          Text(
+                            'In ',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Text(
+                            'Progress',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.red[100],
+                            foregroundColor: Colors.black,
+                            child: Text('3'),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 80,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: Card(
+                          elevation: 4,
+                          child: Row(
+                            children: [],
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
