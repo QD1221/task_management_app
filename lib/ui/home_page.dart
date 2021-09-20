@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:task_management_app/mock/task_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -72,18 +73,128 @@ class _HomePageState extends State<HomePage> {
                       height: 240,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 10,
+                          itemCount: taskItems.length,
                           itemBuilder: (context, index) {
+                            var profileLength = taskItems[index]
+                                    .taskRelate
+                                    ?.profileItems
+                                    ?.length ??
+                                0;
                             return Padding(
                               padding: const EdgeInsets.only(right: 16),
                               child: Container(
-                                width: MediaQuery.of(context).size.width - 100,
+                                width: MediaQuery.of(context).size.width - 140,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-
                                     color: Colors.orangeAccent[100]),
-                                child: Center(
-                                  child: Text('$index'),
+                                padding: EdgeInsets.only(
+                                    top: 16, right: 24, bottom: 8, left: 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      taskItems[index].title ??
+                                          'Unknown task name',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 12),
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.flag,
+                                            color: Colors.red,
+                                            size: 18,
+                                          ),
+                                          Text(
+                                            taskItems[index].dueDateTime ??
+                                                'Unknown',
+                                            style: TextStyle(fontSize: 14),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Text(
+                                      taskItems[index].description ??
+                                          'Unknown description',
+                                      // style: TextStyle(
+                                      //     fontWeight: FontWeight.bold,
+                                      //     fontSize: 20),
+                                    ),
+                                    SizedBox(
+                                      height: 48,
+                                      child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: taskItems[index]
+                                                  .taskTags
+                                                  ?.length ??
+                                              0,
+                                          itemBuilder: (context, index2) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 16, top: 8, bottom: 8),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: taskItems[index]
+                                                      .taskTags?[index2]
+                                                      ?.color,
+                                                  borderRadius:
+                                                      BorderRadius.circular(24),
+                                                ),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 16,
+                                                    vertical: 8),
+                                                child: Center(
+                                                  child: Text(
+                                                    taskItems[index]
+                                                            .taskTags?[index2]
+                                                            ?.tag ??
+                                                        '',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                    ),
+                                    SizedBox(
+                                      height: 48,
+                                      child: Stack(
+                                        children: [
+                                          for (int i = 0;
+                                              i < profileLength;
+                                              i++)
+                                            Positioned(
+                                              left: i * 24,
+                                              top: 0,
+                                              bottom: 0,
+                                              child: CircleAvatar(
+                                                backgroundImage: NetworkImage(
+                                                    taskItems[index]
+                                                                .taskRelate
+                                                                ?.profileItems?[
+                                                            i] ??
+                                                        ''),
+                                              ),
+                                            ),
+                                          Positioned(
+                                            left: 32,
+                                            right: 0,
+                                            bottom: 0,
+                                            top: 0,
+                                            child: Center(
+                                              child: Text(
+                                                  '+ ${taskItems[index].taskRelate?.counter ?? ''}'),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             );
@@ -130,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width / 2.5,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
+                                    borderRadius: BorderRadius.circular(16),
                                     color: Colors.red[100]),
                                 child: Center(
                                   child: Text('$index'),
