@@ -1,18 +1,5 @@
-import 'package:flutter/material.dart';
-
-class TaskTag {
-  String? tag;
-  Color? color;
-
-  TaskTag({this.tag, this.color});
-}
-
-class TaskRelate{
-  int? counter;
-  List<String>? profileItems;
-
-  TaskRelate({this.counter, this.profileItems});
-}
+import 'package:task_management_app/model/task_relate.dart';
+import 'package:task_management_app/model/task_tag.dart';
 
 class Task {
   String? title;
